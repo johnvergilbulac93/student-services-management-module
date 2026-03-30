@@ -1,21 +1,19 @@
 <template>
-
-
     <div class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
         <table class="w-full text-sm text-left rtl:text-right text-body">
             <thead class="bg-neutral-secondary-soft border-b border-default">
                 <tr>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        Product name
+                        Student Number
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        Color
+                        Student Name
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        Category
+                        Grade Level
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
-                        Price
+                        Status
                     </th>
                     <th scope="col" class="px-6 py-3 font-medium">
                         Action
@@ -23,91 +21,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                <tr v-for="item in students" :key="item"
+                    class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                     <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Apple MacBook Pro 17"
+                        {{ item.student_number }}
                     </th>
                     <td class="px-6 py-4">
-                        Silver
+                        {{ item.full_name }}
+
                     </td>
                     <td class="px-6 py-4">
-                        Laptop
+                        {{ item.grade_level }}
+
                     </td>
                     <td class="px-6 py-4">
-                        $2999
+                        {{ item.status }}
+
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
                     </td>
                 </tr>
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Microsoft Surface Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop PC
-                    </td>
-                    <td class="px-6 py-4">
-                        $1999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4">
-                        Accessories
-                    </td>
-                    <td class="px-6 py-4">
-                        $99
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Google Pixel Phone
-                    </th>
-                    <td class="px-6 py-4">
-                        Gray
-                    </td>
-                    <td class="px-6 py-4">
-                        Phone
-                    </td>
-                    <td class="px-6 py-4">
-                        $799
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft">
-                    <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                        Apple Watch 5
-                    </th>
-                    <td class="px-6 py-4">
-                        Red
-                    </td>
-                    <td class="px-6 py-4">
-                        Wearables
-                    </td>
-                    <td class="px-6 py-4">
-                        $999
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
-                    </td>
-                </tr>
+
             </tbody>
         </table>
     </div>
@@ -115,7 +50,26 @@
 </template>
 
 <script setup>
+import axios from '@/plugin/axios';
+import { onMounted, ref } from 'vue';
 
+const students = ref([]);
+const meta = ref(null);
+
+const getStudents = async () => {
+    try {
+        const response = await axios.get('/students');
+        students.value = response.data.data;
+        meta.value = response.data.meta;
+
+    } catch (error) {
+        console.error('Failed to fetch students:', error);
+    }
+};
+
+onMounted(() => {
+    getStudents();
+});
 </script>
 
 <style lang="scss" scoped></style>

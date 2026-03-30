@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import StudentServiceRequest from '@/components/pages/StudentServiceRequest.vue'
 import Student from '@/components/pages/Student.vue'
+import Login from '@/components/pages/Auth/Login.vue'
 
+function isLoggedIn() {
+  return !!localStorage.getItem('APP_TOKEN')
+}
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -24,7 +27,19 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/login',
+      component: Login,
+      name: 'login',
+    },
   ],
 })
-
+router.beforeEach((to, from, next) => {
+  if (to.name === 'login' && isLoggedIn()) {
+    // If logged in, redirect to home
+    next({ name: 'student' })
+  } else {
+    next() // Otherwise, allow access
+  }
+})
 export default router

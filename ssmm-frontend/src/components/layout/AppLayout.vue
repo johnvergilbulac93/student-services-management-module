@@ -35,30 +35,15 @@
                             id="dropdown-user">
                             <div class="px-4 py-3 border-b border-default-medium" role="none">
                                 <p class="text-sm font-medium text-heading" role="none">
-                                    Neil Sims
+                                    {{ user?.name }}
                                 </p>
                                 <p class="text-sm text-body truncate" role="none">
-                                    neil.sims@flowbite.com
+                                    {{ user?.email }}
                                 </p>
                             </div>
                             <ul class="p-2 text-sm text-body font-medium" role="none">
                                 <li>
-                                    <a href="#"
-                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-                                        role="menuitem">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-                                        role="menuitem">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
-                                        role="menuitem">Earnings</a>
-                                </li>
-                                <li>
-                                    <a href="#"
+                                    <a href="#" @click="logout"
                                         class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
                                         role="menuitem">Sign out</a>
                                 </li>
@@ -111,17 +96,41 @@
     </aside>
 
     <div class="p-4 sm:ml-64 mt-14 " v-cloak>
-        <!-- <RouterView /> -->
+        <RouterView />
     </div>
 
 </template>
 
 <script setup>
+import axios from '@/plugin/axios';
 import router from '@/router';
 import { initFlowbite } from 'flowbite'
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+
+const user = ref(null);
+const getUser = async () => {
+    try {
+        const response = await axios.get('/user');
+        user.value = response.data;
+    } catch (error) {
+        console.error('Failed to fetch user:', error);
+        router.push('/login');
+    }
+};
+
+const logout = async () => {
+    try {
+        await axios.post('/logout');
+        localStorage.removeItem('APP_TOKEN');
+        router.push('/login');
+    } catch (error) {
+        console.error('Logout failed:', error);
+    }
+};
 onMounted(() => {
     initFlowbite();
+    getUser();
 });
 </script>
 
