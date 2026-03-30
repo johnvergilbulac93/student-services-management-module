@@ -39,23 +39,44 @@
 
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-fg-brand hover:underline">Edit</a>
+                        <button @click="onEdit(item)" class="font-medium text-fg-brand hover:underline">Edit</button>
                     </td>
                 </tr>
 
             </tbody>
         </table>
     </div>
+    <div class="mt-4 flex items-center justify-between gap-1">
+        <!-- Pagination Buttons -->
+        <div class="flex gap-1">
+            <button v-for="link in meta?.links || []" :key="link.label" :class="[
+                'px-3 py-1 rounded border',
+                link.active ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700',
+                !link.url ? 'cursor-not-allowed opacity-50' : 'hover:bg-blue-200'
+            ]" :disabled="!link.url" v-html="link.label" @click="goToPage(link.url)" />
+        </div>
+
+        <!-- Showing entries -->
+        <div>
+            Showing {{ meta?.from || 0 }} to {{ meta?.to || 0 }} of {{ meta?.total || 0 }} entries
+        </div>
+    </div>
+
 
 </template>
 
 <script setup>
 import axios from '@/plugin/axios';
+import router from '@/router';
 import { onMounted, ref } from 'vue';
 
 const students = ref([]);
 const meta = ref(null);
 
+
+const onEdit = (item) => {
+    router.push({ name: 'student_request_form', params: { id: item.id } });
+};
 const getStudents = async () => {
     try {
         const response = await axios.get('/students');

@@ -30,7 +30,8 @@ axiosRequest.interceptors.response.use(
       localStorage.removeItem('APP_TOKEN')
       router.push('/login')
     }
-    return Promise.reject(error)
+
+    return error
   },
 )
 
