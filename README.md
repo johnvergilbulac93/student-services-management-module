@@ -80,7 +80,7 @@ npm run dev
 ### API Testing
 
 - postman
-  You can use the postman collection that can be found in the repo.
+You can use the postman collection that can be found in the repo.
 
 ### Notes
 
