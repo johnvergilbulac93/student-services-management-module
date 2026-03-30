@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Logs\LogsController;
 use App\Http\Controllers\Api\Student\ServiceRequestController;
 use App\Http\Controllers\Api\Student\StudentController;
 use Illuminate\Http\Request;
@@ -25,5 +26,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete('{id}', [ServiceRequestController::class, 'destroy']); // Admin delete
         Route::post('/upload', [ServiceRequestController::class, 'upload']); //  upload
 
+    });
+    Route::prefix('logs')->group(function () {
+        Route::get('/', [LogsController::class, 'index']); // List of logs
     });
 });

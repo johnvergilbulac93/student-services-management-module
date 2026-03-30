@@ -2,6 +2,7 @@
 
 namespace App\Imports\Student;
 
+use App\Events\Import\NotificationImportEvent;
 use App\Models\ImportLog;
 use App\Models\Student;
 use App\Models\StudentServiceRequest;
@@ -9,15 +10,28 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Events\AfterImport;
+use Maatwebsite\Excel\Events\ImportFailed;
 
-
-class StudentServiceRequestImport implements ToCollection, WithHeadingRow, WithChunkReading, ShouldQueue
+class StudentServiceRequestImport implements ToCollection, WithHeadingRow, WithChunkReading, ShouldQueue, WithEvents
 {
     protected $userId;
     protected $filename;
     protected $summary;
+    public function registerEvents(): array
+    {
+        return [
+            AfterImport::class =>  function () {
+                broadcast(new NotificationImportEvent('Success', 'Import Completed.', 1));
+            },
+            ImportFailed::class => function (ImportFailed $event) {
+                broadcast(new NotificationImportEvent('Import failed', $event->getException()->getMessage(), 0));
+            },
 
+        ];
+    }
     public function __construct($userId, $filename)
     {
         $this->userId = $userId;
@@ -63,7 +77,7 @@ class StudentServiceRequestImport implements ToCollection, WithHeadingRow, WithC
                     'first_name' => $firstName,
                     'last_name' => $lastName,
                     'status' => 1,
-                    'is_imported' => true,
+                    'is_imported' => 1,
                 ]);
                 $this->summary['new_students']++;
             } elseif ($student->status == 0) {

@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['filename', 'user_id', 'summary_json'])]
 class ImportLog extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

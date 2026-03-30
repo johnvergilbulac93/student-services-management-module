@@ -7,15 +7,28 @@ use App\Http\Requests\Student\StudentRequest;
 use App\Http\Resources\Student\StudentResource;
 use App\Models\Student;
 use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::latest()->paginate(10);
+        $students = Student::query()
+            ->when($request->search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
+                        ->orWhere('grade_level', 'like', "%{$search}%")
+                        ->orWhere('student_number', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                });
+            })
+            ->latest()
+            ->paginate(10);
+
         return StudentResource::collection($students);
     }
 
@@ -42,6 +55,7 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, $id)
     {
+
         Student::findOrFail($id)->update($request->validated());
         return Response::apiSuccess(null, 'Student updated successfully');
     }

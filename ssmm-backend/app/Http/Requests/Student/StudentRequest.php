@@ -23,6 +23,7 @@ class StudentRequest extends FormRequest
     public function rules(): array
     {
         $studentId = $this->route('student');
+
         return [
             'student_number' => 'required|string|max:50|unique:students,student_number,' . $studentId,
             'first_name'     => 'required|string|max:100',

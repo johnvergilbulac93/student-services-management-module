@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
-import StudentServiceRequest from '@/components/pages/StudentServiceRequest.vue'
+import StudentServiceRequest from '@/components/pages/ServiceRequest/StudentServiceRequest.vue'
 import Login from '@/components/pages/Auth/Login.vue'
 import Student from '@/components/pages/Student/Student.vue'
 import Form from '@/components/pages/Student/Form.vue'
+import Logs from '@/components/pages/Import/Logs.vue'
+import Import from '@/components/pages/Import/Import.vue'
 
 function isLoggedIn() {
   return !!localStorage.getItem('APP_TOKEN')
@@ -30,6 +32,16 @@ const router = createRouter({
           path: '/student_request/form/:id',
           name: 'student_request_form',
           component: Form,
+        },
+        {
+          path: 'logs',
+          name: 'logs',
+          component: Logs,
+        },
+        {
+          path: 'import',
+          name: 'import',
+          component: Import,
         },
       ],
     },

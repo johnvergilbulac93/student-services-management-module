@@ -18,13 +18,15 @@ cd ssmm-backend
 composer install
 ```
 
-3. Run migrations:
+3. Create a schema of your database choice:
+
+4. Run migrations:
 
 ```bash
 php artisan migrate
 ```
 
-4. Seed the database:
+5. Seed the database:
 
 ```bash
 php artisan db:seed
@@ -63,9 +65,27 @@ npm run dev
 ## Packages Used
 
 ### Laravel Packages
+
 - Laravel Sanctum
 - Laravel Excel
+- Ably Realtime
 
 ### NPM Packages
+
 - flowbite
 - axios
+- vueuse/core
+- lodash
+
+### API Testing
+
+- postman
+  You can use the postman collection that can be found in the repo.
+
+### Notes
+
+You can use the sample data that can be found in the repo.
+
+## Architecture Used
+
+Microservices - independent services, each responsible for a single business capability. Each service can be developed, deployed, and scaled independently.

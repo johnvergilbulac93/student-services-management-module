@@ -1,8 +1,8 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center">
+    <div class="min-h-screen flex items-center justify-center bg-gray-50">
         <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
 
-            <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+            <h2 class="text-2xl font-bold text-center mb-6">Login Form</h2>
 
             <form @submit.prevent="login">
                 <!-- Email -->
@@ -45,10 +45,19 @@ const login = async () => {
         localStorage.setItem('APP_TOKEN', response.data.access_token);
         router.push('/student');
     } catch (error) {
-        console.error('Login failed:', error);
+        if (error.response?.status === 422) {
+            const errors = error.response.data.errors
+            let messages = ''
+
+            for (const key in errors) {
+                if (errors.hasOwnProperty(key)) {
+                    messages += `${errors[key].join(', ')}\n`
+                }
+            }
+            alert(messages)
+        }
     }
 };
 
 </script>
 
-<style lang="scss" scoped></style>

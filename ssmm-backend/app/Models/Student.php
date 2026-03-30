@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-#[Fillable(['student_number', 'first_name', 'last_name', 'grade_level', 'email', 'status'])]
+#[Fillable(['student_number', 'first_name', 'last_name', 'grade_level', 'email', 'status', 'is_imported'])]
 
 class Student extends Model
 {

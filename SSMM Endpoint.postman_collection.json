@@ -1,534 +1,634 @@
 {
-	"info": {
-		"_postman_id": "50bd4460-3692-45b9-a471-2b0e8a32dddc",
-		"name": "SSMM Endpoint",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "20774739"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "Login",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "X-API-KEY",
-								"value": "giFMssbVWH9vxOD9Py2qGQV7ByYF18BK6Asb7O7RvuuX0L16F1",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "email",
-									"value": "admin@example.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "passwords",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/login",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Auth User",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Student",
-			"item": [
-				{
-					"name": "Get Student List",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/students",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"students"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show Per Student",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"students",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Student",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "student_number",
-									"value": "0003",
-									"type": "text"
-								},
-								{
-									"key": "first_name",
-									"value": "Student",
-									"type": "text"
-								},
-								{
-									"key": "last_name",
-									"value": "Three",
-									"type": "text"
-								},
-								{
-									"key": "grade_level",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "student.three@example.com",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "1",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/students",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"students"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Student",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "student_number",
-									"value": "0003",
-									"type": "text"
-								},
-								{
-									"key": "first_name",
-									"value": "Student",
-									"type": "text"
-								},
-								{
-									"key": "last_name",
-									"value": "Three",
-									"type": "text"
-								},
-								{
-									"key": "grade_level",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "student.three@example.com",
-									"type": "text"
-								},
-								{
-									"key": "status",
-									"value": "0",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"students",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Student",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"students",
-								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Service Request",
-			"item": [
-				{
-					"name": "Create Request",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "student_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "service_type",
-									"value": "Good Moral Certificate",
-									"type": "text"
-								},
-								{
-									"key": "date_requested",
-									"value": "2026-03-30",
-									"type": "text"
-								},
-								{
-									"key": "remarks",
-									"value": "Needed for scholarship application\"",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/student-request",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"student-request"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Request",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Show Per Request",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|AhJwxzbzJN5rH0qvSWlJg503TYtMLD0gbbwfas7k58b15876",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/student-requests/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"student-requests",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Status Request",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|AhJwxzbzJN5rH0qvSWlJg503TYtMLD0gbbwfas7k58b15876",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/student-requests/1",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"student-requests",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Request",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:8000/backend/api/v1/student-requests",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "8000",
-							"path": [
-								"backend",
-								"api",
-								"v1",
-								"student-requests"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Upload Bulk Service Request",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "50bd4460-3692-45b9-a471-2b0e8a32dddc",
+    "name": "SSMM Endpoint",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20774739"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "giFMssbVWH9vxOD9Py2qGQV7ByYF18BK6Asb7O7RvuuX0L16F1",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "admin@example.com",
+                  "type": "text",
+                  "uuid": "79b6ec4b-fe4a-456c-86a5-6c3ba398cc6f"
+                },
+                {
+                  "key": "password",
+                  "value": "passwords",
+                  "type": "text",
+                  "uuid": "8bef2541-66ee-415f-9bd1-0e9c5078ec22"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Auth User",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "Get Student List",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/students",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Per Student",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "students",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "student_number",
+                  "value": "0003",
+                  "type": "text",
+                  "uuid": "03d06986-3c51-41f3-a535-c4af8bcd0dbc"
+                },
+                {
+                  "key": "first_name",
+                  "value": "Student",
+                  "type": "text",
+                  "uuid": "7b33683d-1f6a-436b-abf2-6c330ed7f210"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Three",
+                  "type": "text",
+                  "uuid": "4d7872f2-eed3-4d20-85fc-89d380dc3cad"
+                },
+                {
+                  "key": "grade_level",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "5da640ec-76ec-47f9-9b20-eff7e4e2dccf"
+                },
+                {
+                  "key": "email",
+                  "value": "student.three@example.com",
+                  "type": "text",
+                  "uuid": "8743f04f-71be-44cb-a9de-6699577c4295"
+                },
+                {
+                  "key": "status",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "23a1c8aa-0759-4404-b8b3-09767a8e6f0a"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/students",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "students"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "student_number",
+                  "value": "0003",
+                  "type": "text",
+                  "uuid": "03d06986-3c51-41f3-a535-c4af8bcd0dbc"
+                },
+                {
+                  "key": "first_name",
+                  "value": "Student",
+                  "type": "text",
+                  "uuid": "7b33683d-1f6a-436b-abf2-6c330ed7f210"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Three",
+                  "type": "text",
+                  "uuid": "4d7872f2-eed3-4d20-85fc-89d380dc3cad"
+                },
+                {
+                  "key": "grade_level",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "5da640ec-76ec-47f9-9b20-eff7e4e2dccf"
+                },
+                {
+                  "key": "email",
+                  "value": "student.three@example.com",
+                  "type": "text",
+                  "uuid": "8743f04f-71be-44cb-a9de-6699577c4295"
+                },
+                {
+                  "key": "status",
+                  "value": "0",
+                  "type": "text",
+                  "uuid": "23a1c8aa-0759-4404-b8b3-09767a8e6f0a"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "students",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/students/3",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "students",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Service Request",
+      "item": [
+        {
+          "name": "Create Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "4|ldlEhQzDCQRrSrs359HgdcV3CCrNFv5MLFb7mwVHd270744a",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "student_id",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "c33fc974-ffa8-4794-978d-b6ee9fc4e7b4"
+                },
+                {
+                  "key": "service_type",
+                  "value": "Good Moral Certificate",
+                  "type": "text",
+                  "uuid": "2ce5df69-02ac-4fb4-a6f6-98c4d0832e8f"
+                },
+                {
+                  "key": "date_requested",
+                  "value": "2026-03-30",
+                  "type": "text",
+                  "uuid": "d5a732b8-f347-4c24-8379-50319da63984"
+                },
+                {
+                  "key": "remarks",
+                  "value": "Needed for scholarship application\"",
+                  "type": "text",
+                  "uuid": "03e8f1fd-f19b-479e-be84-845dd5a212fc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/student-request",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "student-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Show Per Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|AhJwxzbzJN5rH0qvSWlJg503TYtMLD0gbbwfas7k58b15876",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/student-requests/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "student-requests",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Status Request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|AhJwxzbzJN5rH0qvSWlJg503TYtMLD0gbbwfas7k58b15876",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/student-requests/1",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "student-requests",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Request",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/student-requests",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "student-requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Bulk Service Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Logs",
+      "item": [
+        {
+          "name": "Get Import Logs",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "1|hDsoObbbJlrFOCT5W1hEH0Jo0kZvaOSyoZfVA5of54be1417",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-API-KEY",
+                "value": "giFMssbVWH9vxOD9Py2qGQV7ByYF18BK6Asb7O7RvuuX0L16F1",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "admin@example.com",
+                  "type": "text",
+                  "uuid": "79b6ec4b-fe4a-456c-86a5-6c3ba398cc6f"
+                },
+                {
+                  "key": "password",
+                  "value": "passwords",
+                  "type": "text",
+                  "uuid": "8bef2541-66ee-415f-9bd1-0e9c5078ec22"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/backend/api/v1/logs",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "backend",
+                "api",
+                "v1",
+                "logs"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

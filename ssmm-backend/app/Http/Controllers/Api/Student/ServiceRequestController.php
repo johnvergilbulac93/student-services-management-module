@@ -17,16 +17,13 @@ class ServiceRequestController extends Controller
     // List all service requests with filters
     public function index(Request $request)
     {
-        $query = StudentServiceRequest::with('student');
+        $res = StudentServiceRequest::with('student')
+            ->when($request->filled('status'), fn($q) => $q->where('status', $request->status))
+            ->when($request->filled('date_start'), fn($q) => $q->where('date_requested', '>=', $request->date_start))
+            ->when($request->filled('date_end'), fn($q) => $q->where('date_requested', '<=', $request->date_end))
+            ->orderBy('date_requested', 'desc')
+            ->paginate(10);
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
-
-        if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('date_requested', [$request->start_date, $request->end_date]);
-        }
-        $res = $query->orderBy('date_requested', 'desc')->paginate(10);
         return StudentServiceRequestResource::collection($res);
     }
     // Create a new request
@@ -53,7 +50,7 @@ class ServiceRequestController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $validated = $request->validate([
-            'status' => ['required', Rule::in(['Approved', 'Rejected'])],
+            'status' => ['required', Rule::in(['Pending', 'Approved', 'Rejected'])],
         ]);
 
         $serviceRequest = StudentServiceRequest::findOrFail($id);
