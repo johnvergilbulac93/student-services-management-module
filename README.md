@@ -57,3 +57,15 @@ npm install
 ```bash
 npm run dev
 ```
+
+---
+
+## Packages Used
+
+### Laravel Packages
+- Laravel Sanctum
+- Laravel Excel
+
+### NPM Packages
+- flowbite
+- axios
