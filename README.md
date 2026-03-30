@@ -17,9 +17,10 @@ cd ssmm-backend
 ```bash
 composer install
 ```
-
-3. Create a schema of your database choice:
-
+3. Create a schema/database name of your database choice: 
+```bash
+e.g sssm-app
+```
 4. Run migrations:
 
 ```bash
@@ -32,7 +33,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
-5. Run the development server:
+6. Run the development server:
 
 ```bash
 composer run dev
@@ -79,7 +80,6 @@ npm run dev
 
 ### API Testing
 
-- postman
 You can use the postman collection that can be found in the repo.
 
 ### Notes
